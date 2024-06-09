@@ -8,7 +8,6 @@ app.secret_key = 'your_secret_key'
 @app.route('/')
 @app.route('/home')
 def home():
-    # Töröljük a szükséges session adatokat a kezdőoldal betöltésekor
     session.pop('chosen_sport', None)
     session.pop('formats', None)
     session.pop('chosen_format', None)
@@ -104,7 +103,7 @@ def enter_results():
                 result = request.form.get(f'result_{i}')
                 name = session['names'][i]
                 results.append((name, result))
-            results.sort(key=lambda x: float(x[1]))  # Idő alapján rendezés
+            results.sort(key=lambda x: float(x[1]))
             session['results'] = results
             return redirect(url_for('show_results'))
 
