@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    <h3>Időfutam eredmények</h3>
+    <ol>
+        {% for rank, name, time in results %}
+            <li>{{ rank }}. hely: {{ name }} - {{ time }} mp</li>
+        {% endfor %}
+    </ol>
+    <form action="{{ url_for('home') }}" method="GET">
+        <button type="submit" class="btn btn-primary">Kezdőlapra</button>
+    </form>
+{% endblock %}

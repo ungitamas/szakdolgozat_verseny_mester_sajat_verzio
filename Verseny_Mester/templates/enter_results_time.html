@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    <p>Verseny név: {{ tournament_name }}</p>
+    <p>Választott sportág: {{ chosen_sport }}</p>
+    <form action="{{ url_for('enter_results') }}" method="POST">
+        <h3>Időfutam eredmények:</h3>
+        {% for name in names %}
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <h5>{{ name }}</h5>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="result_{{ loop.index0 }}" name="result_{{ loop.index0 }}" placeholder="Idő (mp-ben)" required>
+                </div>
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Eredmények mentése</button>
+    </form>
+{% endblock %}

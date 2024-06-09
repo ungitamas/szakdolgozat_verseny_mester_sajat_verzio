@@ -1,61 +1,72 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
 
 body {
-    font-family: 'Roboto Slab', serif;
-    background-color: #f4f4f9;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    background-image: url('banner.jpg');
-  }
-  
-  .navbar {
-    background-color: #343a40;
-  }
-  
-  .navbar-brand {
-    font-weight: bold;
-    color: #ffffff;
-  }
-  
-  .container {
-    background-color: #ffffff;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    margin-top: 20px;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    color: #333;
-    font-weight: 600;
-  }
-  
-  p {
-    line-height: 1.6;
-  }
-  
-  .cimke {
-    color: white;
-  }
-  
-  .btn-primary {
-    background-color: rgb(219, 94, 17);
-  }
+  font-family: 'Roboto Slab', serif;
+  background-color: #f4f4f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  background-image: url('banner.jpg');
+}
 
-  button {
-    margin: 40px 22px;
-  }
+.navbar {
+  background-color: #343a40;
+}
 
-  .right {
-    text-align: right;
-  }
+.navbar-brand {
+  font-weight: bold;
+  color: #ffffff;
+}
 
-  li {
-    list-style: none;
-  }
+.container {
+  background-color: #ffffff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-top: 20px;
+}
 
-.btn-primary:hover {
-  background-color: black;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #333;
+  font-weight: 600;
+}
+
+p {
+  line-height: 1.6;
+}
+
+.cimke {
   color: white;
+}
+
+.btn-primary {
+  background-color: rgb(219, 94, 17);
+}
+
+button {
+  margin: 40px 22px;
+}
+
+.right {
+  text-align: right;
+}
+
+li {
+  list-style: none;
+}
+
+button.btn-primary:hover,
+button.btn-primary:active {
+  background-color: black !important;
+  color: white !important;
+}
+
+
+.t1 {
+  font-size: 1.2em;
 }

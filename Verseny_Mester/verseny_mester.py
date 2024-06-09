@@ -8,6 +8,7 @@ app.secret_key = 'your_secret_key'
 @app.route('/')
 @app.route('/home')
 def home():
+    # Töröljük a szükséges session adatokat a kezdőoldal betöltésekor
     session.pop('chosen_sport', None)
     session.pop('formats', None)
     session.pop('chosen_format', None)
@@ -75,28 +76,52 @@ def review():
 def enter_results():
     chosen_format = session.get('chosen_format', '')
 
-    if chosen_format != 'Egyenes kieséses':
-        return redirect(url_for('home'))
-
-    if request.method == 'POST':
-        results = []
-        for i in range(0, len(request.form) // 2):
-            result_1 = request.form.get(f'results_{i}_1')
-            result_2 = request.form.get(f'results_{i}_2')
-            results.append((result_1, result_2))
-        session['results'] = results
-        return redirect(url_for('home'))
+    if chosen_format == 'Egyenes kieséses':
+        if request.method == 'POST':
+            results = []
+            for i in range(0, len(request.form) // 2):
+                result_1 = request.form.get(f'results_{i}_1')
+                result_2 = request.form.get(f'results_{i}_2')
+                results.append((result_1, result_2))
+            session['results'] = results
+            return redirect(url_for('home'))
+        
+        names = session.get('names', [])
+        random.shuffle(names)
+        chosen_sport = session.get('chosen_sport', '')
+        tournament_name = session.get('tournament_name', '')
+        pairs = [(names[i], names[i + 1]) for i in range(0, len(names) - 1, 2)]
+        if len(names) % 2 == 1:
+            eronyero = names[-1]
+        else:
+            eronyero = None
+        return render_template('enter_results.html', title='Eredmények felvétele', pairs=pairs, eronyero=eronyero, chosen_sport=chosen_sport, tournament_name=tournament_name)
     
-    names = session.get('names', [])
-    random.shuffle(names)
-    chosen_sport = session.get('chosen_sport', '')
-    tournament_name = session.get('tournament_name', '')
-    pairs = [(names[i], names[i + 1]) for i in range(0, len(names) - 1, 2)]
-    if len(names) % 2 == 1:
-        eronyero = names[-1]
-    else:
-        eronyero = None
-    return render_template('enter_results.html', title='Eredmények felvétele', pairs=pairs, eronyero=eronyero, chosen_sport=chosen_sport, tournament_name=tournament_name)
+    elif chosen_format == 'Időfutamos':
+        if request.method == 'POST':
+            results = []
+            for i in range(len(request.form)):
+                result = request.form.get(f'result_{i}')
+                name = session['names'][i]
+                results.append((name, result))
+            results.sort(key=lambda x: float(x[1]))  # Idő alapján rendezés
+            session['results'] = results
+            return redirect(url_for('show_results'))
+
+        names = session.get('names', [])
+        chosen_sport = session.get('chosen_sport', '')
+        tournament_name = session.get('tournament_name', '')
+        return render_template('enter_results_time.html', title='Időfutamos eredmények felvétele', names=names, chosen_sport=chosen_sport, tournament_name=tournament_name)
+    
+    return redirect(url_for('home'))
+
+@app.route('/show_results')
+def show_results():
+    results = session.get('results', [])
+    results_with_rank = [(index + 1, result[0], result[1]) for index, result in enumerate(results)]
+    return render_template('show_results.html', title='Eredmények', results=results_with_rank)
+
+
 
 
 @app.route('/contact')
