@@ -4,7 +4,7 @@
     <h1>{{ title }}</h1>
     <form action="{{ url_for('choosing_sport') }}" method="POST">
         {% for sport in sports %}
-            <button type="submit" name="sport" value="{{ sport }}">{{ sport }}</button>
+            <button class="btn btn-dark" type="submit" name="sport" value="{{ sport }}">{{ sport }}</button>
         {% endfor %}
     </form>
 

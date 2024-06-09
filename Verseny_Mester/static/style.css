@@ -9,8 +9,7 @@ body {
     background-image: url('banner.jpg');
   }
   
-  
-   .navbar {
+  .navbar {
     background-color: #343a40;
   }
   
@@ -19,8 +18,6 @@ body {
     color: #ffffff;
   }
   
-
-
   .container {
     background-color: #ffffff;
     padding: 20px;
@@ -29,7 +26,6 @@ body {
     margin-top: 20px;
   }
   
-
   h1, h2, h3, h4, h5, h6 {
     color: #333;
     font-weight: 600;
@@ -44,7 +40,7 @@ body {
   }
   
   .btn-primary {
-    background-color: orange;
+    background-color: rgb(219, 94, 17);
   }
 
   button {
@@ -54,3 +50,12 @@ body {
   .right {
     text-align: right;
   }
+
+  li {
+    list-style: none;
+  }
+
+.btn-primary:hover {
+  background-color: black;
+  color: white;
+}
