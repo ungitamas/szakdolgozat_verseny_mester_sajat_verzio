@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h2 class="my-5">Új csapat/versenyző név megadása</h2>
+    <form action="{{ url_for('enter_name') }}" method="POST">
+        <div class="mb-3">
+            <input type="text" class="form-control" id="nev" placeholder="Név" name="name" required>
+        </div>
+        <button type="submit" class="btn btn-dark">Mentés</button>
+    </form>
+    <form action="{{ url_for('review') }}" method="GET">
+        <button type="submit" class="btn btn-primary">Tovább a sorsoláshoz</button>
+    </form>
+    {% if names %}
+        <ul>
+            {% for name in names %}
+                <li>{{ name }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock content %}
+
+
+

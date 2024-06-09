@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h2 class="my-5">Verseny név megadása</h2>
+    <form action="{{ url_for('enter_tournament_name') }}" method="POST">
+        <div class="mb-3">
+            <input type="text" class="form-control" id="tournament_name" placeholder="Verseny név" name="tournament_name" required>
+        </div>
+        <button type="submit" class="btn btn-dark">Mentés</button>
+    </form>
+{% endblock content %}

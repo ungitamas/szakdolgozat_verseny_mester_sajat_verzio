@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    <p>Verseny név: {{ tournament_name }}</p>
+    <p>Választott sportág: {{ chosen_sport }}</p>
+    <form action="{{ url_for('enter_results') }}" method="POST">
+        <h3>Eredmények:</h3>
+        {% for pair in pairs %}
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <h5>{{ pair[0] }}</h5>
+                    <input type="text" class="form-control" id="result_{{ loop.index0 }}_1" name="results_{{ loop.index0 }}_1" placeholder="Eredmény" required>
+                </div>
+                <div class="col-md-2 text-center">
+                    <h5>vs</h5>
+                </div>
+                <div class="col-md-4">
+                    <h5>{{ pair[1] }}</h5>
+                    <input type="text" class="form-control" id="result_{{ loop.index0 }}_2" name="results_{{ loop.index0 }}_2" placeholder="Eredmény" required>
+                </div>
+            </div>
+        {% endfor %}
+        {% if eronyero %}
+            <div class="mb-3">
+                <h5>Erőnyerő: {{ eronyero }}</h5>
+            </div>
+        {% endif %}
+        <button type="submit" class="btn btn-primary">Eredmények mentése</button>
+    </form>
+{% endblock content %}
+
+

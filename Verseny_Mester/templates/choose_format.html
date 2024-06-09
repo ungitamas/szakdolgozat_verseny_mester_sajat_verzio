@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    <h2>Választott sportág: {{ chosen_sport }}</h2>
+    <form action="{{ url_for('choosing_format') }}" method="POST">
+        {% for format in formats %}
+            <button type="submit" name="format" value="{{ format }}">{{ format }}</button>
+        {% endfor %}
+    </form>
+{% endblock content %}
